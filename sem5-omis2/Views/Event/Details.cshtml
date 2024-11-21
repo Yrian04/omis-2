@@ -36,6 +36,8 @@
 <a href="@Url.Action("Index", "Event")" class="btn btn-primary mt-3">Назад к списку</a>
 @if (Model.IsOrganizer)
 {
-    <a asp-action="Edit" asp-route-id="@Model.Event.Id" class="btn btn-warning">Редактировать</a>
+    <a asp-action="Edit" asp-route-id="@Model.Event.Id" class="btn btn-warning mt-3">Редактировать</a>
+    <a asp-action="Delete" asp-route-id="@Model.Event.Id" class="btn btn-danger mt-3">Удалить</a>
 }
+
 

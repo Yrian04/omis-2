@@ -3,6 +3,7 @@ using sem5_omis2.Models;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.EntityFrameworkCore;
+using System.Collections.Generic;
 
 namespace sem5_omis2.Controllers
 {
@@ -184,6 +185,50 @@ namespace sem5_omis2.Controllers
             }
 
             return View(updatedEvent);
+        }
+
+        public async Task<IActionResult> Delete(Guid id)
+        {
+            var @event = await _context.Events.FirstOrDefaultAsync(e => e.Id == id);
+
+            if (@event == null)
+            {
+                return NotFound();
+            }
+
+            var currentUser = await _userManager.GetUserAsync(User);
+
+            if (@event.Organizer?.Id != currentUser?.Id)
+            {
+                return Forbid();
+            }
+
+            return View(@event);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> DeleteConfirmed(Guid id)
+        {
+            var @event = await _context.Events.FirstOrDefaultAsync(e => e.Id == id);
+
+            if (@event == null)
+            {
+                return NotFound();
+            }
+
+            var currentUser = await _userManager.GetUserAsync(User);
+
+            if (@event.Organizer?.Id != currentUser?.Id)
+            {
+                return Forbid(); // Запретить удаление, если текущий пользователь не организатор
+            }
+
+            _context.Events.Remove(@event);
+            await _context.SaveChangesAsync();
+
+            TempData["SuccessMessage"] = "Мероприятие успешно удалено!";
+            return RedirectToAction(nameof(Index));
         }
     }
 }
