@@ -1,6 +1,6 @@
-﻿using lab2.Models;
+﻿using sem5_omis2.Models;
 
-namespace lab2.Services
+namespace sem5_omis2.Services
 {
     public interface IEventReportGenerator
     {

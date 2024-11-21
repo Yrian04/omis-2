@@ -1,7 +1,10 @@
-namespace lab2.Models
+using System.ComponentModel.DataAnnotations;
+
+namespace sem5_omis2.Models
 {
     public class EventGroup
     {
+        [Key]
         public Guid Id { get; set; }
         public string GroupName { get; set; } = "";
         public string Theme { get; set; } = "";

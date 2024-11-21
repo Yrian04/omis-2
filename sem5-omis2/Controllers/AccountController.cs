@@ -1,7 +1,7 @@
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 
-namespace lab2.Controllers
+namespace sem5_omis2.Controllers
 {
     public class AccountController : Controller
     {

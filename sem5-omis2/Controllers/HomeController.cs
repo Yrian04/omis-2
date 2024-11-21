@@ -1,8 +1,8 @@
 using System.Diagnostics;
 using Microsoft.AspNetCore.Mvc;
-using lab2.Models;
+using sem5_omis2.Models;
 
-namespace lab2.Controllers;
+namespace sem5_omis2.Controllers;
 
 public class HomeController : Controller
 {
@@ -17,11 +17,10 @@ public class HomeController : Controller
 
     public IActionResult Index()
     {
-        return View();
-    }
-
-    public IActionResult Privacy()
-    {
+        if (!User.Identity?.IsAuthenticated ?? false)
+        {
+            return RedirectToAction("Login", "Account");
+        }
         return View();
     }
 

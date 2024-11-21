@@ -1,23 +1,41 @@
-﻿@model lab2.Models.Event
-
+﻿@model sem5_omis2.Models.EventViewModel
 @{
     ViewData["Title"] = "Подробнее о мероприятии";
 }
 
-<h3>@Model.Name</h3>
+<h3>@Model.Event.Name</h3>
 
 <div class="card">
     <div class="card-header">
         <h4>Описание</h4>
     </div>
     <div class="card-body">
-        <p><strong>Описание:</strong> @Model.Description</p>
-        <p><strong>Дата:</strong> @Model.Date.ToString("dd/MM/yyyy")</p>
-        <p><strong>Локация:</strong> @Model.Location</p>
-        <p><strong>Формат:</strong> @Model.Format</p>
-        <p><strong>Макс. количество участников:</strong> @Model.MaxParticipants</p>
-        <p><strong>Стоимость:</strong> @Model.Cost.ToString("C")</p>
+        <p><strong>Описание:</strong> @Model.Event.Description</p>
+        <p><strong>Дата:</strong> @Model.Event.Date.ToString("dd/MM/yyyy")</p>
+        <p><strong>Локация:</strong> @Model.Event.Location</p>
+        <p><strong>Формат:</strong> @Model.Event.Format</p>
+        <p><strong>Макс. количество участников:</strong> @Model.Event.MaxParticipants</p>
+        <p><strong>Стоимость:</strong> @Model.Event.Cost.ToString("C")</p>
+        <p>
+            @if (Model.IsSubscribed)
+            {
+                <form asp-action="Unsubscribe" asp-route-id="@Model.Event.Id" method="post">
+                    <button type="submit" class="btn btn-danger">Отписаться</button>
+                </form>
+            }
+            else
+            {
+                <form asp-action="Subscribe" asp-route-id="@Model.Event.Id" method="post">
+                    <button type="submit" class="btn btn-primary">Подписаться</button>
+                </form>
+            }
+        </p>
     </div>
 </div>
 
-<a href="@Url.Action("List", "Event")" class="btn btn-primary mt-3">Назад к списку</a>
+<a href="@Url.Action("Index", "Event")" class="btn btn-primary mt-3">Назад к списку</a>
+@if (Model.IsOrganizer)
+{
+    <a asp-action="Edit" asp-route-id="@Model.Event.Id" class="btn btn-warning">Редактировать</a>
+}
+

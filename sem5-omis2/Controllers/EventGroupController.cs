@@ -1,4 +1,4 @@
-﻿using lab2.Models;
+﻿using sem5_omis2.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -44,8 +44,8 @@ namespace sem5_omis2.Controllers
 
         public async Task<IActionResult> Details(Guid id)
         {
-            var eventGroup = await _context.EventGroups
-                .Include(e => e.Events) // Загружаем мероприятия, связанные с группой
+                var eventGroup = await _context.EventGroups
+                .Include(e => e.Events)
                 .FirstOrDefaultAsync(m => m.Id == id);
 
             if (eventGroup == null)
@@ -59,7 +59,7 @@ namespace sem5_omis2.Controllers
         public async Task<IActionResult> AddEvent(Guid groupId)
         {
             var eventGroup = await _context.EventGroups
-                .Include(e => e.Events) // Загружаем мероприятия, связанные с группой
+                .Include(e => e.Events)
                 .FirstOrDefaultAsync(m => m.Id == groupId);
             if (eventGroup == null)
             {
@@ -69,7 +69,6 @@ namespace sem5_omis2.Controllers
             ViewBag.GroupId = groupId;
             ViewBag.GroupName = eventGroup.GroupName;
 
-            // Получаем все мероприятия, которые еще не привязаны к группе
             var availableEvents = await _context.Events
                 .Where(e => !eventGroup.Events.Contains(e))
                 .ToListAsync();

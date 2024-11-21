@@ -1,9 +1,9 @@
 ﻿using QuestPDF.Fluent;
 using QuestPDF.Helpers;
 using QuestPDF.Infrastructure;
-using lab2.Models;
+using sem5_omis2.Models;
 
-namespace lab2.Services
+namespace sem5_omis2.Services
 {
     public class EventReportGenerator : IEventReportGenerator
     {

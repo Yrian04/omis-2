@@ -1,10 +1,10 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using lab2.Models;
-using lab2.Services;
+using sem5_omis2.Models;
+using sem5_omis2.Services;
 using Microsoft.EntityFrameworkCore;
 
 
-namespace lab2.Controllers
+namespace sem5_omis2.Controllers
 {
     public class ReportController : Controller
     {

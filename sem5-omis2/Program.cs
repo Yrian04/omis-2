@@ -1,5 +1,5 @@
-using lab2.Models;
-using lab2.Services;
+using sem5_omis2.Models;
+using sem5_omis2.Services;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using QuestPDF.Infrastructure;
@@ -60,5 +60,10 @@ app.MapControllerRoute(
     name: "event",
     pattern: "{controller=Event}/{action}/{id?}");
 
+app.MapControllerRoute(
+    name: "eventGroup",
+    pattern: "{controller=EventGroup}/{action=Index}/{id?}");
+
+app.UseStatusCodePagesWithReExecute("/Error/{0}");
 
 app.Run();

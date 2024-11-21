@@ -2,7 +2,7 @@ using Microsoft.AspNetCore.Identity;
 using System.ComponentModel.DataAnnotations;
 
 
-namespace lab2.Models
+namespace sem5_omis2.Models
 {
     public class Event
     {
@@ -18,9 +18,9 @@ namespace lab2.Models
 
         public IdentityUser? Organizer { get; set; }
 
-        public readonly List<IdentityUser> _participants = new List<IdentityUser>();
+        public List<IdentityUser> Participants { get; set; } = new List<IdentityUser>();
 
-        public void AddParticipants(IdentityUser participant) => _participants.Add(participant);
-        public void RemoveParticipant(IdentityUser participant) => _participants.Remove(participant);
+        public void AddParticipants(IdentityUser participant) => Participants.Add(participant);
+        public void RemoveParticipant(IdentityUser participant) => Participants.Remove(participant);
     }
 }

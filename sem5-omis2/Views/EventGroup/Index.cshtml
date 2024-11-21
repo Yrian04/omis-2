@@ -1,4 +1,4 @@
-﻿@model IEnumerable<lab2.Models.EventGroup>
+﻿@model IEnumerable<sem5_omis2.Models.EventGroup>
 
 <h2>Группы мероприятий</h2>
 
@@ -21,10 +21,11 @@
                 <td>@group.GroupName</td>
                 <td>@group.Theme</td>
                 <td>
-                    <a href="@Url.Action("Details", "EventGroup", new { groupId = group.Id })" class="btn btn-info">Посмотреть</a>
+                    <a href="@Url.Action("Details", "EventGroup", new { id = group.Id })" class="btn btn-info">Посмотреть</a>
                     <a href="@Url.Action("AddEvent", "EventGroup", new { groupId = group.Id })" class="btn btn-info">Добавить мероприятие</a>
                 </td>
             </tr>
         }
     </tbody>
 </table>
+<a class="btn btn-primary mt-3" href="@Url.Action("Index", "Home")" type="button">Назад</a>

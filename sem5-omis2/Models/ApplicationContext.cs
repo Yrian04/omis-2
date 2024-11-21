@@ -3,7 +3,7 @@ using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 
 
-namespace lab2.Models
+namespace sem5_omis2.Models
 {
     public class ApplicationContext : IdentityDbContext<IdentityUser>
     {

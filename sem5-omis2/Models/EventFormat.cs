@@ -1,4 +1,4 @@
-namespace lab2.Models
+namespace sem5_omis2.Models
 {
     public enum EventFormat
     {
