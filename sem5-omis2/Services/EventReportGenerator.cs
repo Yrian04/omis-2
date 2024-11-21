@@ -1,0 +1,35 @@
+﻿using QuestPDF.Fluent;
+using QuestPDF.Helpers;
+using QuestPDF.Infrastructure;
+using lab2.Models;
+
+namespace lab2.Services
+{
+    public class EventReportGenerator : IEventReportGenerator
+    {
+        public byte[] GenerateReport(Event eventData)
+        {
+            return Document.Create(container =>
+            {
+                container.Page(page =>
+                {
+                    page.Margin(50);
+                    page.Header().Text("Отчёт по мероприятию").FontSize(20).SemiBold().AlignCenter();
+                    page.Content().Column(column =>
+                    {
+                        column.Item().Text($"Название мероприятия: {eventData.Name}").FontSize(14);
+                        column.Item().Text($"Описание: {eventData.Description}").FontSize(12);
+                        column.Item().Text($"Дата проведения: {eventData.Date:dd.MM.yyyy}").FontSize(12);
+                        column.Item().Text($"Формат: {eventData.Format}").FontSize(12);
+                        column.Item().Text($"Место: {eventData.Location}").FontSize(12);
+                        column.Item().Text($"Максимальное количество участников: {eventData.MaxParticipants}").FontSize(12);
+                        column.Item().Text($"Стоимость участия: {eventData.Cost:C}").FontSize(12);
+                        column.Item().Text($"Организатор: {eventData.Organizer?.UserName ?? "Не указан"}").FontSize(12);
+                    });
+                    page.Footer().AlignCenter().Text($"Сгенерировано: {DateTime.Now:dd.MM.yyyy HH:mm:ss}");
+                });
+            }).GeneratePdf();
+        }
+    }
+}
+

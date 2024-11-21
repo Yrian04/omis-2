@@ -1,0 +1,22 @@
+﻿@model IEnumerable<lab2.Models.Event>
+
+@{
+    ViewData["Title"] = "Отчет";
+}
+
+<h2>Генерация отчета</h2>
+
+<form asp-action="GenerateReport" asp-controller="Report" method="post">
+    <div class="form-group">
+        <label for="eventId">Выберите мероприятие:</label>
+        <select id="eventId" name="eventId" class="form-control" required>
+            <option value="" disabled selected>-- Выберите мероприятие --</option>
+            @foreach (var item in Model)
+            {
+                <option value="@item.Id">@item.Name</option>
+            }
+        </select>
+    </div>
+
+    <button type="submit" class="btn btn-primary">Скачать отчет</button>
+</form>

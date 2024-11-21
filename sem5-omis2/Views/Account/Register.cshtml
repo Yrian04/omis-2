@@ -1,0 +1,102 @@
+@model Microsoft.AspNetCore.Identity.IdentityUser
+
+@{
+    ViewData["Title"] = "Регистрация";
+}
+
+<style>
+    body {
+        background-color: #333;
+        color: white;
+        font-family: Arial, sans-serif;
+        text-align: center;
+    }
+
+    .container-fluid {
+        padding: 50px 0;
+    }
+
+    .registration-container {
+        background-color: #222;
+        padding: 30px;
+        border-radius: 10px;
+        box-shadow: 0 0 15px rgba(0, 0, 0, 0.3);
+    }
+
+    h3 {
+        font-weight: bold;
+        margin-bottom: 30px;
+    }
+
+    .form-group {
+        margin-bottom: 20px;
+    }
+
+    .form-control {
+        background-color: #444;
+        border: none;
+        color: white;
+        border-radius: 5px;
+        padding: 10px;
+        width: 100%;
+    }
+
+        .form-control:focus {
+            background-color: #555;
+        }
+
+    .btn {
+        background-color: #1E90FF;
+        color: white;
+        border-radius: 5px;
+        padding: 10px;
+        width: 100%;
+        cursor: pointer;
+    }
+
+        .btn:hover {
+            background-color: #007BFF;
+        }
+
+    .footer a {
+        color: #1E90FF;
+        text-decoration: none;
+        font-size: 14px;
+    }
+
+        .footer a:hover {
+            text-decoration: underline;
+        }
+</style>
+
+<section class="container-fluid">
+    <div class="row justify-content-center">
+        <div class="col-12 col-md-6 col-lg-4">
+            <div class="registration-container">
+                <h3 class="text-center text-white">Регистрация</h3>
+                <form asp-action="Register" asp-controller="Account" asp-antiforgery="true">
+                    <div class="form-group">
+                        <label for="username">Логин:</label>
+                        <input type="text" name="username" class="form-control" placeholder="Введите логин" />
+                        <span asp-validation-for="UserName" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label for="password">Пароль:</label>
+                        <input type="password" name="password" class="form-control" placeholder="Введите пароль" />
+                    </div>
+                    <div class="form-group">
+                        <input type="submit" class="btn btn-primary btn-block" value="Зарегистрироваться" />
+                    </div>
+                </form>
+                <div class="footer">
+                    <a href="#">Забыли пароль?</a><br>
+                    <a href="/Account/Login" class="btn btn-secondary">Уже есть аккаунт</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

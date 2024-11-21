@@ -1,0 +1,23 @@
+﻿@model lab2.Models.EventGroup
+
+<h2>Мероприятия в группе: @Model.GroupName</h2>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Название мероприятия</th>
+            <th>Дата</th>
+            <th>Местоположение</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var eventItem in Model.Events)
+        {
+            <tr>
+                <td>@eventItem.Name</td>
+                <td>@eventItem.Date.ToShortDateString()</td>
+                <td>@eventItem.Location</td>
+            </tr>
+        }
+    </tbody>
+</table>

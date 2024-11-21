@@ -1,0 +1,95 @@
+﻿@{
+    ViewData["Title"] = "Вход";
+}
+
+<style>
+    body {
+        background-color: #333;
+        color: white;
+        font-family: Arial, sans-serif;
+        text-align: center;
+    }
+
+    .container-fluid {
+        padding: 50px 0;
+    }
+
+    .login-container {
+        background-color: #222;
+        padding: 30px;
+        border-radius: 10px;
+        box-shadow: 0 0 15px rgba(0, 0, 0, 0.3);
+    }
+
+    h3 {
+        font-weight: bold;
+        margin-bottom: 30px;
+    }
+
+    .form-group {
+        margin-bottom: 20px;
+    }
+
+    .form-control {
+        background-color: #444;
+        border: none;
+        color: white;
+        border-radius: 5px;
+        padding: 10px;
+        width: 100%;
+    }
+
+        .form-control:focus {
+            background-color: #555;
+        }
+
+    .btn {
+        background-color: #1E90FF;
+        color: white;
+        border-radius: 5px;
+        padding: 10px;
+        width: 100%;
+        cursor: pointer;
+    }
+
+        .btn:hover {
+            background-color: #007BFF;
+        }
+
+    .footer a {
+        color: #1E90FF;
+        text-decoration: none;
+        font-size: 14px;
+    }
+
+        .footer a:hover {
+            text-decoration: underline;
+        }
+</style>
+
+<section class="container-fluid">
+    <div class="row justify-content-center">
+        <div class="col-12 col-md-6 col-lg-4">
+            <div class="login-container">
+                <h3 class="text-center text-white">Sign In</h3>
+                <form asp-action="Login" asp-controller="Account" asp-antiforgery="true">
+                    <div class="form-group">
+                        <label for="username">Логин:</label>
+                        <input type="text" id="username" class="form-control" placeholder="Введите логин" />
+                    </div>
+                    <div class="form-group">
+                        <label for="password">Пароль:</label>
+                        <input type="password" id="password" class="form-control" placeholder="Введите пароль" />
+                    </div>
+                    <div class="form-group">
+                        <input type="submit" class="btn btn-primary btn-block" value="Войти" />
+                    </div>
+                </form>
+                <div class="footer">
+                    <a href="#">Забыли пароль?</a><br>
+                    <a href="/Account/Register" class="alert-info">Новый пользователь</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

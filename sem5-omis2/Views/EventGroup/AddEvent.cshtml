@@ -1,0 +1,32 @@
+﻿@model IEnumerable<lab2.Models.Event>
+
+@{
+    ViewData["Title"] = "Добавить мероприятие";
+}
+
+<h3>Добавить мероприятие в группу: @ViewBag.GroupName</h3>
+
+@if (!Model.Any())
+{
+    <p>Нет доступных мероприятий для добавления.</p>
+}
+else
+{
+    <form asp-action="AddEvent" method="post">
+        <input type="hidden" name="groupId" value="@ViewBag.GroupId" />
+
+        <div class="form-group">
+            <label for="eventId">Выберите мероприятие:</label>
+            <select name="eventId" id="eventId" class="form-control">
+                @foreach (var _event in Model)
+                {
+                    <option value="@_event.Id">@_event.Name (@_event.Date.ToShortDateString())</option>
+                }
+            </select>
+        </div>
+
+        <div class="form-group">
+            <button type="submit" class="btn btn-primary">Добавить</button>
+        </div>
+    </form>
+}

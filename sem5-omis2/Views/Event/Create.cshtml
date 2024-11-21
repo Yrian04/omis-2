@@ -1,0 +1,52 @@
+﻿@model lab2.Models.Event
+
+@{
+    ViewData["Title"] = "Создание мероприятия";
+}
+<style>
+</style>
+
+<div class="container">
+    <h2>Создание мероприятия</h2>
+    <form asp-action="Create" method="post">
+        <div class="form-group">
+            <label asp-for="Name">Название мероприятия</label>
+            <input asp-for="Name" class="form-control" placeholder="Введите название" />
+            <span asp-validation-for="Name" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="Description">Описание</label>
+            <textarea asp-for="Description" class="form-control" placeholder="Введите описание" rows="4"></textarea>
+            <span asp-validation-for="Description" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="Date">Дата и время</label>
+            <input asp-for="Date" type="date" class="form-control" />
+            <span asp-validation-for="Date" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="Location">Место проведения</label>
+            <input asp-for="Location" class="form-control" placeholder="Введите место проведения" />
+            <span asp-validation-for="Location" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="MaxParticipants">Максимальное количество участников</label>
+            <input asp-for="MaxParticipants" class="form-control" type="number" min="1" />
+            <span asp-validation-for="MaxParticipants" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="Cost">Стоимость</label>
+            <input asp-for="Cost" class="form-control" type="number" step="0.01" />
+            <span asp-validation-for="Cost" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="Format">Формат мероприятия</label>
+            <select asp-for="Format" class="form-control">
+                <option value="OFFLINE">Офлайн</option>
+                <option value="ONLINE">Онлайн</option>
+            </select>
+            <span asp-validation-for="Format" class="text-danger"></span>
+        </div>
+        <button type="submit" class="btn btn-primary">Создать мероприятие</button>
+    </form>
+</div>
