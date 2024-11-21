@@ -19,8 +19,13 @@ namespace sem5_omis2.Controllers
         [HttpPost]
         public async Task<IActionResult> Login(string username, string password)
         {
-            var user = new IdentityUser{ UserName = username };
-            var result = await _signInManager.PasswordSignInAsync(user, password, false, false);
+            var user = await _userManager.FindByNameAsync(username);
+            if (user == null)
+            {
+                ModelState.AddModelError("", "Неверный логин или пароль!");
+                return View();
+            }
+            var result = await _signInManager.PasswordSignInAsync(username, password, false, false);
             if (result.Succeeded)
             {
                 return RedirectToAction("Index", "Home");

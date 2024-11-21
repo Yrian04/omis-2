@@ -25,6 +25,18 @@ namespace sem5_omis2.Services
                         column.Item().Text($"Максимальное количество участников: {eventData.MaxParticipants}").FontSize(12);
                         column.Item().Text($"Стоимость участия: {eventData.Cost:C}").FontSize(12);
                         column.Item().Text($"Организатор: {eventData.Organizer?.UserName ?? "Не указан"}").FontSize(12);
+                        column.Item().Text("Список участников:").FontSize(14).SemiBold();
+                        if (eventData.Participants != null && eventData.Participants.Any())
+                        {
+                            foreach (var participant in eventData.Participants)
+                            {
+                                column.Item().Text($"- {participant.UserName}").FontSize(12);
+                            }
+                        }
+                        else
+                        {
+                            column.Item().Text("Нет участников").FontSize(12).Italic();
+                        }
                     });
                     page.Footer().AlignCenter().Text($"Сгенерировано: {DateTime.Now:dd.MM.yyyy HH:mm:ss}");
                 });
